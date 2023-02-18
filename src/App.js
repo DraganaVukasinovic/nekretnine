@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
  
 import './App.css';
 import LoginPage from "./komponente/LoginPage";
+import RegisterPage from "./komponente/RegisterPage";
  
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>   
           
           <Route   path="/"  element={<LoginPage addToken={setToken}/>}/>
+          <Route   path="/register"  element={<RegisterPage />}/>
           
             
         </Routes>

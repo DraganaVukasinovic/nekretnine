@@ -18,7 +18,7 @@ class AutfController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:100',
             'email' => 'required|string|max:100|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed'
+            'password' => 'required|string|min:8'
         ]);
     
         if ($validator->fails()) {
