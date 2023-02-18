@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
  
 import './App.css';
 import Admin from "./komponente/Admin";
+import Dodaj from "./komponente/Dodaj";
 import LoginPage from "./komponente/LoginPage";
 import Nekretnine from "./komponente/Nekretnine";
 import RegisterPage from "./komponente/RegisterPage";
@@ -52,7 +53,10 @@ function App() {
           
           <Route   path="/"  element={<LoginPage  />}/>
           <Route   path="/register"  element={<RegisterPage />}/>
+
+          <Route   path="/admin/dodaj"  element={<Dodaj />}/>
           <Route   path="/admin"  element={<Admin nekretnine={nekretnine}/>}/>
+
           <Route   path="/nekretnine"  element={<Nekretnine nekretnine={nekretnine}/>}/>
           
             

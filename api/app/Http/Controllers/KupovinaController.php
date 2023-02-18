@@ -57,7 +57,7 @@ class KupovinaController extends Controller
 
         ]);
         $d->save();
-        return response()->json(['Kreirano!', $d]);
+        return response()->json(['Kreirano!',  $d,'status'=>200]);
     }
 
     /**

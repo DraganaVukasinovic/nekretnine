@@ -73,7 +73,12 @@ function Admin({nekretnine}) {
       });
   }
 
+  function dodaj(){
+        navigate('/admin/dodaj');
 
+
+
+  }
 
 
   const [datatable, setDatatable] = useState({
@@ -153,6 +158,8 @@ function Admin({nekretnine}) {
   return (
     <div className="container">
     <div className="container">
+        <button className="btn btn-success" onClick={dodaj}>Dodaj nekretninu </button>
+
         <button className="btn btn-primary" onClick={handleLogout}>Odjavi se </button>
     </div>
      <div className='container'><MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} /></div>;
