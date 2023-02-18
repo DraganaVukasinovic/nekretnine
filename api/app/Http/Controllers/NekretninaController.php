@@ -6,7 +6,7 @@ use App\Http\Resources\NekretninaResource;
 use App\Models\nekretnina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+ 
 class NekretninaController extends Controller
 {
     /**
@@ -19,6 +19,7 @@ class NekretninaController extends Controller
        return NekretninaResource::collection(Nekretnina::all());
     }
 
+ 
     /**
      * Show the form for creating a new resource.
      *

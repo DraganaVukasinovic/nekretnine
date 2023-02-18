@@ -20,6 +20,8 @@ Route::post("/register",[AutfController::class,'register']);
 Route::post("/login",[AutfController::class,'login']);
 
 Route::get("/nekretnine",[NekretninaController::class,'index']);
+ 
+
 Route::get("/kupovine",[KupovinaController::class,'index']);
 Route::post("/kupovine",[KupovinaController::class,'store']);
 

@@ -37,7 +37,8 @@ class AutfController extends Controller
         return response()->json([
             'data' => $user,
             'access_token' => $token,
-            'token_type' => 'Bearer'
+            'token_type' => 'Bearer',
+            'status'=>200
         ]);
     }
     
@@ -54,14 +55,26 @@ class AutfController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
     
-        $user = $request->user();
+        $user = User::where('email', $request['email'])->firstOrFail();
+
         $token = $user->createToken('auth_token')->plainTextToken;
-    
-        $response = [
-            'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'Bearer'
-        ];
+        if($user->admin==1){
+            $response = [
+                'user' => $user,
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'status'=>200,
+                'role'=>'admin'
+            ];
+        }else{
+            $response = [
+                'user' => $user,
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'status'=>200
+            ];
+        }
+        
     
         return response()->json($response);
     }
@@ -72,7 +85,7 @@ class AutfController extends Controller
         $user = auth()->user();
         $user->tokens()->delete();
 
-        $response = [        'message' => 'Uspešno ste se izlogovali!',        'data' => null    ];
+        $response = [        'message' => 'Uspešno ste se izlogovali!',        'data' => null,'status'=>200    ];
 
         return response()->json($response);
     }
