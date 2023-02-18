@@ -65,7 +65,7 @@ class NekretninaController extends Controller
 
         ]);
         $d->save();
-        return response()->json(['Kreirano!', $d]);
+        return response()->json(['Kreirano!', $d,'status'=>200]);
     }
 
     /**
@@ -128,7 +128,7 @@ class NekretninaController extends Controller
             $d->broj_soba=$request->broj_soba; 
              
             $d->save();
-            return response()->json(['Uspesno izmenjeno!',  $d]);
+            return response()->json(['Uspesno izmenjeno!',  $d,'status'=>200]);
 
         }else{
             return response()->json('Trazeni objekat ne postoji u bazi');

@@ -7,7 +7,7 @@ import {  useNavigate } from "react-router-dom";
 import { BsPencilFill,BsFillTrashFill } from 'react-icons/bs';
 
 
-function Admin({nekretnine}) {
+function Admin({nekretnine,setNekretninaAzuriraj}) {
 
 
 
@@ -74,12 +74,14 @@ function Admin({nekretnine}) {
   }
 
   function dodaj(){
-        navigate('/admin/dodaj');
-
-
-
+        navigate('/admin/dodaj'); 
   }
+  function azuriraj(nekretnina){
 
+    setNekretninaAzuriraj(nekretnina);
+
+    navigate("/admin/azuriraj/");
+}
 
   const [datatable, setDatatable] = useState({
        
@@ -147,7 +149,7 @@ function Admin({nekretnine}) {
           broj_kupatila:n.broj_kupatila,
           kvadratura:n.kvadratura,
           tip:n.tip,
-          opcije: <><button className="btn btn-warning"><BsPencilFill></BsPencilFill></button><button className="btn btn-danger" onClick={()=>obrisi(n.id)}><BsFillTrashFill></BsFillTrashFill></button></>
+          opcije: <><button className="btn btn-warning" onClick={()=>azuriraj(n)}><BsPencilFill ></BsPencilFill></button><button className="btn btn-danger" onClick={()=>obrisi(n.id)}><BsFillTrashFill></BsFillTrashFill></button></>
          
         
         }
