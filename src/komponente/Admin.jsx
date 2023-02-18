@@ -4,9 +4,16 @@ import { React, useState } from "react";
 import { MDBDataTableV5 } from 'mdbreact';
  
 import {  useNavigate } from "react-router-dom";
- 
+import { BsPencilFill,BsFillTrashFill } from 'react-icons/bs';
+
 
 function Admin({nekretnine}) {
+
+
+
+
+
+    
     const navigate = useNavigate();
   function handleLogout(){ 
    
@@ -38,6 +45,37 @@ function Admin({nekretnine}) {
 
     }); 
   }
+
+
+  function obrisi(id){
+    axios
+    .delete("http://127.0.0.1:8000/api/nekretnine/"+id,{headers:{'Authorization': `Bearer ${ window.sessionStorage.getItem('auth_token')}`} } )
+    .then((res)=>{  
+        console.log(res.data);
+        alert("USPESNO")
+         
+    })
+    .catch(function (error) {
+        if (error.response) {
+          // Request made and server responded
+          console.log(error.response.data);
+          
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
+    
+      });
+  }
+
+
+
+
   const [datatable, setDatatable] = useState({
        
     columns: [
@@ -85,6 +123,11 @@ function Admin({nekretnine}) {
         label: 'tip',
         field: 'tip',
         width: 270,
+      },
+      {
+        label: 'opcije',
+        field: 'opcije',
+        width: 270,
       }
 
        
@@ -99,6 +142,7 @@ function Admin({nekretnine}) {
           broj_kupatila:n.broj_kupatila,
           kvadratura:n.kvadratura,
           tip:n.tip,
+          opcije: <><button className="btn btn-warning"><BsPencilFill></BsPencilFill></button><button className="btn btn-danger" onClick={()=>obrisi(n.id)}><BsFillTrashFill></BsFillTrashFill></button></>
          
         
         }

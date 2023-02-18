@@ -15,13 +15,11 @@ class CreateKupovinasTable extends Migration
     {
         Schema::create('kupovinas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('nekretnina_id');
+            $table->foreignId('user_id');
+            $table->foreignId('nekretnina_id');
             $table->date('datum_kupovine');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('nekretnina_id')->references('id')->on('nekretninas');
+ 
         });
     }
 
