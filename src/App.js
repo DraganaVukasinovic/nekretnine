@@ -8,6 +8,7 @@ import Azuriraj from "./komponente/Azuriraj";
 import Dodaj from "./komponente/Dodaj";
 import LoginPage from "./komponente/LoginPage";
 import Nekretnine from "./komponente/Nekretnine";
+import NekretnineSAD from "./komponente/NekretnineSAD";
 import RegisterPage from "./komponente/RegisterPage";
  
 const axiosInstance = axios.create({
@@ -43,6 +44,27 @@ function App() {
   const [nZaAzuriranje,setNekretninaAzuriraj] = useState(null)
   
 
+  const [nekretnineSAD,setNekretnineSAD] = useState([ ])
+
+  function ucitajNekretnineSaSpoljnogAPIja(){
+      const options = {
+        method: 'GET',
+        url: 'https://realtor.p.rapidapi.com/locations/v2/auto-complete',
+        params: {input: 'new york', limit: '10'},
+        headers: {
+          'X-RapidAPI-Key': 'bbb2a722e5msh49d347b4b22fbedp1bb4b9jsn34bcd74d42ae',
+          'X-RapidAPI-Host': 'realtor.p.rapidapi.com'
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+        console.log(response.data);
+        setNekretnineSAD(response.data.autocomplete)
+      }).catch(function (error) {
+        console.error(error);
+      });
+  }
+
   return (
     <BrowserRouter className="App">
       
@@ -58,9 +80,11 @@ function App() {
 
           <Route   path="/admin/azuriraj"  element={<Azuriraj nekretnina={nZaAzuriranje} />}/>
           <Route   path="/admin/dodaj"  element={<Dodaj />}/>
-          <Route   path="/admin"  element={<Admin nekretnine={nekretnine} setNekretninaAzuriraj={setNekretninaAzuriraj}/>}/>
+          <Route   path="/admin"  element={<Admin nekretnine={nekretnine} setNekretninaAzuriraj={setNekretninaAzuriraj} />}/>
 
-          <Route   path="/nekretnine"  element={<Nekretnine nekretnine={nekretnine}/>}/>
+          <Route   path="/nekretnine/SAD"  element={<NekretnineSAD nekretnine={nekretnineSAD}  />}/>
+
+          <Route   path="/nekretnine"  element={<Nekretnine nekretnine={nekretnine} ucitajNekretnineSaSpoljnogAPIja={ucitajNekretnineSaSpoljnogAPIja} />}/>
           
             
         </Routes>

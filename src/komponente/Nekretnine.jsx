@@ -5,7 +5,7 @@ import { MDBDataTableV5 } from 'mdbreact';
 import {  useNavigate } from "react-router-dom";
  
 
-function Nekretnine({nekretnine}) {
+function Nekretnine({nekretnine,ucitajNekretnineSaSpoljnogAPIja}) {
     console.log(nekretnine)
     const navigate = useNavigate();
   function handleLogout(){ 
@@ -107,10 +107,16 @@ function Nekretnine({nekretnine}) {
     })
    
 })      
+  function nekretnineSAD(){
+    ucitajNekretnineSaSpoljnogAPIja();
 
+    navigate('/nekretnine/SAD');
+  }
   return (
     <div className="container">
         <div className="container">
+            <button className="btn btn-success" onClick={nekretnineSAD}>Nekretnine u SAD</button>
+
             <button className="btn btn-primary" onClick={handleLogout}>Odjavi se </button>
         </div>
          <div className='container'><MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} /></div>;
