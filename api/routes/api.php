@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\KupovinaController;
+use App\Http\Controllers\NekretninaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get("/nekretnine",[NekretninaController::class,'index']);
+Route::get("/kupovine",[KupovinaController::class,'index']);
+Route::post("/kupovine",[KupovinaController::class,'store']);
+
+ 
+Route::post("/nekretnine",[NekretninaController::class,'store']);
+Route::put("/nekretnine/{id}",[NekretninaController::class,'update']);
+Route::delete("/nekretnine/{id}",[NekretninaController::class,'destroy']);
