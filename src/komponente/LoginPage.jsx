@@ -4,7 +4,7 @@ import {useState} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-function LoginPage({addToken}) {
+function LoginPage() {
 
 
     
@@ -37,7 +37,7 @@ function LoginPage({addToken}) {
               
                 window.sessionStorage.setItem("auth_token",res.data.access_token);
                 window.sessionStorage.setItem("auth_name",res.data.user.name);
-                addToken(res.data.access_token);
+              
                 console.log(res.data);
                 if(res.data.role === 'admin')
                 {
