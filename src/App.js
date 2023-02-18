@@ -52,7 +52,7 @@ function App() {
           
           <Route   path="/"  element={<LoginPage  />}/>
           <Route   path="/register"  element={<RegisterPage />}/>
-          <Route   path="/admin"  element={<Admin />}/>
+          <Route   path="/admin"  element={<Admin nekretnine={nekretnine}/>}/>
           <Route   path="/nekretnine"  element={<Nekretnine nekretnine={nekretnine}/>}/>
           
             
