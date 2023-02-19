@@ -72,6 +72,9 @@ function Admin({nekretnine,setNekretninaAzuriraj}) {
   function dodaj(){
         navigate('/admin/dodaj'); 
   }
+  function statistike(){
+    navigate('/admin/statistike'); 
+}
   function azuriraj(nekretnina){
 
     setNekretninaAzuriraj(nekretnina);
@@ -156,6 +159,8 @@ function Admin({nekretnine,setNekretninaAzuriraj}) {
   return (
     <div className="container">
     <div className="container">
+      <button className="btn btn-warning" onClick={statistike}>Statistike </button>
+
         <button className="btn btn-success" onClick={dodaj}>Dodaj nekretninu </button>
 
         <button className="btn btn-primary" onClick={handleLogout}>Odjavi se </button>
