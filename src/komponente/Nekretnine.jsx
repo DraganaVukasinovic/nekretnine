@@ -38,6 +38,52 @@ function Nekretnine({nekretnine,ucitajNekretnineSaSpoljnogAPIja}) {
 
     }); 
   }
+  function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+    }
+    var danasnjiDatum = formatDate(); //gggg-mm-dd
+
+  function kupi(n){
+    const data = new FormData();
+    data.append("datum_kupovine",danasnjiDatum);
+    data.append("nekretnina_id",n.id);
+    data.append("user_id",window.sessionStorage.getItem("auth_id"));
+
+
+
+    var config = {
+      method: 'post',
+      url: 'http://127.0.0.1:8000/api/kupovine',
+      data:data,
+      headers:{'Authorization': `Bearer ${ window.sessionStorage.getItem('auth_token')}`},
+    };  
+    
+    axios(config).then(res => {  
+        
+        console.log(res) 
+
+        if(res.status === 200){
+        alert("uspeh")
+        }else { 
+            alert("greska")
+        }
+    
+    }); 
+
+
+
+
+  }
   const [datatable, setDatatable] = useState({
        
     columns: [
@@ -85,7 +131,12 @@ function Nekretnine({nekretnine,ucitajNekretnineSaSpoljnogAPIja}) {
         label: 'tip',
         field: 'tip',
         width: 270,
-      }
+      },
+      {
+        label: 'kupi',
+        field: 'kupi',
+        width: 270,
+      },
 
        
     ],
@@ -99,7 +150,7 @@ function Nekretnine({nekretnine,ucitajNekretnineSaSpoljnogAPIja}) {
           broj_kupatila:n.broj_kupatila,
           kvadratura:n.kvadratura,
           tip:n.tip,
-         
+          kupi:<><button className="btn btn-warning" onClick={()=>kupi(n)}>Kupi</button></>
         
         }
         

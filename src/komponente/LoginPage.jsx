@@ -34,6 +34,7 @@ function LoginPage() {
             
                
               
+                window.sessionStorage.setItem("auth_id",res.data.user.id);
               
                 window.sessionStorage.setItem("auth_token",res.data.access_token);
                 window.sessionStorage.setItem("auth_name",res.data.user.name);

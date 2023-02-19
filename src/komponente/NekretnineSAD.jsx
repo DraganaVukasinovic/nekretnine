@@ -76,6 +76,7 @@ function NekretnineSAD({nekretnine}) {
         field: 'lon',
         width: 270,
       },
+   
 
        
     ],
@@ -88,7 +89,7 @@ function NekretnineSAD({nekretnine}) {
           state_code:n.state_code,
           lat:n.centroid.lat,
           lon:n.centroid.lon,
- 
+         
          
         
         }

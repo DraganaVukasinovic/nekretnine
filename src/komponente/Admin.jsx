@@ -8,13 +8,9 @@ import { BsPencilFill,BsFillTrashFill } from 'react-icons/bs';
 
 
 function Admin({nekretnine,setNekretninaAzuriraj}) {
-
-
-
-
-
-    
+   
     const navigate = useNavigate();
+    
   function handleLogout(){ 
    
      
