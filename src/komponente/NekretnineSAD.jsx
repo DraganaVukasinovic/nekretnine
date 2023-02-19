@@ -3,7 +3,8 @@ import { React, useState } from "react";
 import { MDBDataTableV5 } from 'mdbreact';
  
 import {  useNavigate } from "react-router-dom";
- 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 function NekretnineSAD({nekretnine}) {
   
@@ -76,7 +77,7 @@ function NekretnineSAD({nekretnine}) {
         field: 'lon',
         width: 270,
       },
-   
+     
 
        
     ],
@@ -89,7 +90,7 @@ function NekretnineSAD({nekretnine}) {
           state_code:n.state_code,
           lat:n.centroid.lat,
           lon:n.centroid.lon,
-         
+        
          
         
         }
@@ -99,12 +100,44 @@ function NekretnineSAD({nekretnine}) {
    
 })      
  
+      function exportPDF() {
+
+ 
+          const unit = "pt";
+          const size = "A4"; // Use A1, A2, A3 or A4
+          const orientation = "landscape"; // portrait or landscape
+
+          const marginLeft = 40;
+          const doc = new jsPDF(orientation, unit, size);
+
+          doc.setFontSize(15);
+          var today = new Date();
+     
+          const title = "Nekretnine u ponudi" +  today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+          const headers = [["area_type", "_id","_score","city"]];
+ 
+          const data = nekretnine.map(elt=> [elt.area_type, elt._id, elt._score,  elt.city]);
+        
+          let content = {
+            startY: 50,
+            head: headers,
+            body: data ,
+            
+          };
+
+          doc.text(title, marginLeft, 40);
+          doc.autoTable(content);
+          doc.save("nekretnine.pdf")
+    }
+
   return (
     <div className="container">
         <div className="container">
             
+           <button className="btn btn-primary" onClick={exportPDF}>Generisi PDF</button>
 
             <button className="btn btn-primary" onClick={handleLogout}>Odjavi se </button>
+           
         </div>
          <div className='container'><MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} /></div>;
         
@@ -113,5 +146,5 @@ function NekretnineSAD({nekretnine}) {
     </div>
   )
 }
-
+ 
 export default NekretnineSAD;
