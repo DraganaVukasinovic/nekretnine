@@ -5,7 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "rec
 
 const BarChartComponent = ({kupovine}) => {
     const data=[];
-    function brojProdatihNekretninaGodisnje(godina){ //po zadatku
+    function brojProdatihNekretninaGodisnje(godina){ //po godini
         var brojac=0;
         for(var i=0;i<kupovine.length;i++){
           console.log(kupovine[i].datum_kupovine)

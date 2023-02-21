@@ -20,11 +20,17 @@ class KupovinaSeeder extends Seeder
         $nekretnine = Nekretnina::all();
 
         $kupovine = [
-            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-01-10'],
-            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-02-15'],
-            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-03-20'],
-            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-04-25'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2020-01-10'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2018-02-15'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2021-03-20'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2018-04-25'],
             ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-05-30'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-05-30'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2018-05-30'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-05-30'],
+            ['user_id' => $users->random()->id, 'nekretnina_id' => $nekretnine->random()->id, 'datum_kupovine' => '2022-05-30'],
+
+
         ];
 
         foreach ($kupovine as $kupovina) {

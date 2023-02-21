@@ -1,13 +1,12 @@
  
  
-import React, { useState } from 'react';
+import React from 'react';
  
 import BarChartComponent from './BarChart';
 
 function Statistike({kupovine}) {
    
-    
-    console.log()
+ 
 
 
    return (

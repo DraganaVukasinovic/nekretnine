@@ -57,8 +57,9 @@ class AutfController extends Controller
     
         $user = User::where('email', $request['email'])->firstOrFail();
 
-        $token = $user->createToken('auth_token')->plainTextToken;
         if($user->admin==1){
+            $token = $user->createToken($user->email.'_AdminToken',['server:admin'])->plainTextToken;
+
             $response = [
                 'user' => $user,
                 'access_token' => $token,
@@ -67,6 +68,8 @@ class AutfController extends Controller
                 'role'=>'admin'
             ];
         }else{
+            $token = $user->createToken('auth_token')->plainTextToken;
+
             $response = [
                 'user' => $user,
                 'access_token' => $token,
